@@ -4,6 +4,8 @@
 	"printWidth": 80,
 	"semi": true,
 	"trailingComma": "es5",
-	"singleQuote": true,
-	"endOfLine": "lf"
+	"singleQuote": false,
+	"doubleQuote": true,
+	"endOfLine": "lf",
+	"max_line_length": "80"
 }
