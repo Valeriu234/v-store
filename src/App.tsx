@@ -1,42 +1,24 @@
-import DirectoryComponent from "./components/directory/directory.component.tsx";
+import { Routes, Route } from "react-router-dom";
+
+import HomeComponent from "./routes/home/home.component.tsx";
+import NavigationComponent from "./routes/navigation/navigation.component.tsx";
 
 import "./categories.styles.scss";
 
 export type category = {
-	title: string;
-	id: number;
-	imageUrl: string;
+  title: string;
+  id: number;
+  imageUrl: string;
 };
-
 function App() {
-	const categories: Array<category> = [
-		{
-			id: 1,
-			title: "hats",
-			imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-		},
-		{
-			id: 2,
-			title: "jackets",
-			imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-		},
-		{
-			id: 3,
-			title: "sneakers",
-			imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-		},
-		{
-			id: 4,
-			title: "womens",
-			imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-		},
-		{
-			id: 5,
-			title: "mens",
-			imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-		},
-	];
-	return <DirectoryComponent categories={categories} />;
+  return (
+    <Routes>
+      <Route path="/" element={<NavigationComponent />}>
+        <Route index element={<HomeComponent />} />
+        <Route path="shop" element={<HomeComponent />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
