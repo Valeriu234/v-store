@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 
 interface NavigationItemComponentProps {
-  children: JSX.Element;
-  route: string;
+	children: JSX.Element;
+	route: string;
 }
 const NavigationItemComponent = ({
-  children,
-  route,
+	children,
+	route,
 }: NavigationItemComponentProps) => {
-  return (
-    <Link className="nav-link" to={route}>
-      {children}
-    </Link>
-  );
+	return (
+		<Link className="nav-link" to={route}>
+			{children}
+		</Link>
+	);
 };
 
 export default NavigationItemComponent;
