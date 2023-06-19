@@ -1,0 +1,32 @@
+.input-container {
+  position: relative;
+  border-bottom: 1px solid black;
+  .input {
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    background: white;
+    border: none;
+    color: black;
+    padding-left: 20px;
+  }
+
+  .input-label {
+    position: absolute;
+    font-size: 20px;
+  }
+  .disabled {
+    left: 20px;
+    top: 10px;
+    opacity: 0;
+  }
+  .active {
+    left: 20px;
+    top: 10px;
+   opacity: 1;
+   transform: translateY(-35px);
+    font-size: 18px;
+    font-weight: normal;
+    transition: .2s ease-in;
+  }
+}
