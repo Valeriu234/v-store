@@ -5,6 +5,7 @@ import "./category-item.styles.scss";
 interface CategoryItemProps {
 	category: category;
 }
+
 const CategoryItemComponent = ({ category }: CategoryItemProps) => {
 	const { title, imageUrl } = category;
 	return (
