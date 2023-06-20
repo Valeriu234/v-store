@@ -1,0 +1,19 @@
+.sign-in {
+  width: 40%;
+  .sign-in__title {
+    font-size: var(--font-size-big);
+    margin-bottom: var(--small-margin);
+  }
+  .sign-in__description {
+    font-size: var(--font-size-medium);
+  }
+}
+
+@media only screen and ($medium-tablet) {
+  .sign-in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+}

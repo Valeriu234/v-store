@@ -2,7 +2,7 @@ import "./directory.styles.scss";
 
 import CategoryItemComponent from "../category-item/category-item.component.tsx";
 
-import type { category } from "../../App.tsx";
+import type { category } from "../../../App.tsx";
 
 interface DirectoryProps {
 	categories: Array<category>;

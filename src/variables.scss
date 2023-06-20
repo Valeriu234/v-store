@@ -1,0 +1,41 @@
+:root {
+--small-gaps        : 10px;
+--medium-gaps       : 20px;
+--big-gaps          : 40px;
+
+--small-margin      : 20px;
+--medium-margin     : 60px;
+--big-margin        : 80px;
+
+--small-padding     : 20px;
+--medium-padding    : 60px;
+--big-padding       : 120px;
+
+--font-size-big     : 50px;
+--font-size-medium  : 35px;
+--font-size-small   : 18px;
+--default-font-size : 18px;
+}
+
+@media only screen and ($large-tablet) {
+  :root {
+    --small-gaps: 10px;
+    --medium-gaps: 20px;
+    --big-gaps: 40px;
+
+    --small-margin: 15px;
+    --medium-margin: 30px;
+    --big-margin: 40px;
+
+    --small-padding: 15px;
+    --medium-padding: 45px;
+    --big-padding: 80px;
+
+    --font-size-big: 35px;
+    --font-size-medium: 25px;
+    --font-size-small: 14px;
+    --default-font-size: 14px;
+  }
+}
+
+

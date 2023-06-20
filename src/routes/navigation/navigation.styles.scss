@@ -3,21 +3,25 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0 20px 0;
-	padding: 0 15px 0 15px;
+	margin: var(--small-margin) 0 var(--small-margin) 0;
+	padding: 0 var(--small-padding) 0 var(--small-padding);
 
 	.logo-container {
 		height: 100%;
 		width: 70px;
-		padding: 25px;
+		padding: var(--small-padding);
 	}
 
-	.nav-links-container {
+	.navigation__links {
 		width: 50%;
 		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
+	}
+
+	.navigation__burger-icon {
+		display: none;
 	}
 }
 
@@ -27,3 +31,5 @@
 	display: flex;
 	align-items: center;
 }
+
+
