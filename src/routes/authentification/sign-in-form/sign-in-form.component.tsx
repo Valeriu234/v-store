@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import {
+	signInWithGooglePopup,
+	createUserDocumentFromAuth,
+} from "../../../utils/firebase/firebase.utils.js";
 
 import InputComponent from "../../../components/input/input.component.tsx";
 
@@ -10,6 +14,11 @@ const SignInFormComponent = () => {
 		email: "",
 		password: "",
 	});
+
+	const logGoogleUser = async () => {
+		const { user } = await signInWithGooglePopup();
+		await createUserDocumentFromAuth(user);
+	};
 
 	const onChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
@@ -35,7 +44,11 @@ const SignInFormComponent = () => {
 			/>
 			<div className="sign-in__form_buttons">
 				<ButtonComponent content="Sign In" color="black" />
-				<ButtonComponent content="Sign in with google" color="#6f32a8" />
+				<ButtonComponent
+					onClickHandler={logGoogleUser}
+					content="Sign in with google"
+					color="#6f32a8"
+				/>
 			</div>
 		</form>
 	);
