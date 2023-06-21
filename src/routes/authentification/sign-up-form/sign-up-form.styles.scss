@@ -1,0 +1,12 @@
+.sign-up__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--big-gaps);
+  width: 100%;
+}
+
+@media only screen and ($medium-tablet) {
+  .sign-up__form_button {
+    margin: 0 auto;
+  }
+}

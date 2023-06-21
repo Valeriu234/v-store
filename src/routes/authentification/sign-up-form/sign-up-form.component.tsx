@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import InputComponent from "../input/input.component.tsx";
-
 import "./sign-up-form.styles.scss";
-import ButtonComponent from "../button/button.component.tsx";
+
+import InputComponent from "../../../components/input/input.component.tsx";
+import ButtonComponent from "../../../components/button/button.component.tsx";
 
 const SignUpFormComponent = () => {
 	const [signUpValues, setSignUpValues] = useState({
@@ -49,7 +49,11 @@ const SignUpFormComponent = () => {
 				placeholder="Confirm password"
 				onChange={onChange}
 			/>
-			<ButtonComponent content="Sign Up" color="black" />
+			<ButtonComponent
+				className="sign-up__form_button"
+				content="Sign Up"
+				color="black"
+			/>
 		</form>
 	);
 };

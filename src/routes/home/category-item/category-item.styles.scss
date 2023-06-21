@@ -55,7 +55,7 @@
 		h2 {
 			font-weight: bold;
 			margin: 0 6px 0;
-			font-size: 22px;
+			font-size: var(--font-size-small);
 			color: #4a4a4a;
 		}
 
@@ -66,3 +66,4 @@
 		}
 	}
 }
+

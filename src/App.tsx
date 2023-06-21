@@ -3,8 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomeComponent from "./routes/home/home.component.tsx";
 import NavigationComponent from "./routes/navigation/navigation.component.tsx";
 
-import "./categories.styles.scss";
-import LoginPageComponent from "./components/login-page/login-page.component.tsx";
+import LoginPageComponent from "./routes/authentification/login-page/login-page.component.tsx";
 
 export type category = {
 	title: string;

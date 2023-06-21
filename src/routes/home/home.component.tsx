@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import DirectoryComponent from "../../components/directory/directory.component.tsx";
+import DirectoryComponent from "./directory/directory.component.tsx";
 
 export type category = {
 	title: string;

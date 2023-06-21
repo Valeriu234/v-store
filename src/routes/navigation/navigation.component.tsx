@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import NavigationItemComponent from "./navigation-item.component.tsx";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { ReactComponent as ShoppingCart } from "../../assets/shopping-cart.svg";
+import { ReactComponent as BurgerMenu } from "../../assets/burger-menu.svg";
 
 import "./navigation.styles.scss";
 import { ROUTES } from "../routes.constants.ts";
@@ -33,13 +34,14 @@ const NavigationComponent = () => {
 					<CrwnLogo />
 				</NavigationItemComponent>
 
-				<div className="nav-links-container">
+				<div className="navigation__links">
 					{navLinks.map(({ route, content }) => (
 						<NavigationItemComponent route={route}>
 							{content}
 						</NavigationItemComponent>
 					))}
 				</div>
+				<BurgerMenu className="navigation__burger-icon" />
 			</div>
 			<Outlet />
 		</>

@@ -1,0 +1,14 @@
+.login-page-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: var(--big-margin);
+  width: 100%;
+}
+
+@media only screen and ($medium-tablet) {
+  .login-page-container {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--big-gaps)
+  }
+}

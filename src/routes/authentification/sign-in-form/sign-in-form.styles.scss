@@ -1,8 +1,9 @@
 .sign-in__form {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-top: 60px;
+  gap: var(--big-gaps);
+  margin-top: var(--medium-margin);
+  width: 100%;
   .sign-in__form_buttons {
     display: flex;
     justify-content: space-between;
