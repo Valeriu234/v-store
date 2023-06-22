@@ -6,6 +6,7 @@
 		"module": "ESNext",
 		"skipLibCheck": true,
 		"include": ["custom.d.ts"],
+		"allowJs": true,
 		/* Bundler mode */
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
