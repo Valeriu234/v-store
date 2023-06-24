@@ -1,6 +1,6 @@
-import "./sign-in.styles.scss";
-
 import SignInFormComponent from "../sign-in-form/sign-in-form.component.tsx";
+
+import "./sign-in.styles.scss";
 
 const SignInComponent = () => {
 	return (
