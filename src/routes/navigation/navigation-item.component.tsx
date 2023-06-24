@@ -1,7 +1,9 @@
+import React from "react";
+
 import { Link } from "react-router-dom";
 
 interface NavigationItemComponentProps {
-	children: JSX.Element;
+	children: React.ReactNode;
 	route: string;
 }
 const NavigationItemComponent = ({
