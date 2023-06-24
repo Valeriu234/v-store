@@ -1,21 +1,28 @@
+import React, { useState } from "react";
+
 import "./input.styles.scss";
-import React from "react";
 
 interface InputComponentProps {
-	onChange: (e: React.ChangeEvent<HTMLInputElement>, property: string) => void;
+	onChangeHandler: (
+		e: React.ChangeEvent<HTMLInputElement>,
+		property: string
+	) => void;
 	placeholder: string;
 	inputValue: string;
 	type: string;
 	name: string;
+	error?: string;
 }
 
 const InputComponent = ({
-	onChange,
+	onChangeHandler,
 	placeholder,
 	inputValue,
 	type,
 	name,
+	error,
 }: InputComponentProps) => {
+	const [touched, setTouched] = useState(false);
 	const changeStylesLabel = () => {
 		if (inputValue.length !== 0) {
 			return "input-label active";
@@ -24,18 +31,22 @@ const InputComponent = ({
 		}
 	};
 	return (
-		<div className="input-container">
-			<input
-				onChange={(e) => {
-					onChange(e, name);
-				}}
-				className="input"
-				placeholder={placeholder}
-				type={type}
-				name={name}
-			/>
-			<span className={changeStylesLabel()}>{placeholder}</span>
-		</div>
+		<>
+			<div className="input-container">
+				<input
+					onChange={(e) => {
+						onChangeHandler(e, name);
+					}}
+					className="input"
+					placeholder={placeholder}
+					type={type}
+					name={name}
+					onBlur={() => setTouched(true)}
+				/>
+				<span className={changeStylesLabel()}>{placeholder}</span>
+				{error && touched && <span className="error">{error}</span>}
+			</div>
+		</>
 	);
 };
 
