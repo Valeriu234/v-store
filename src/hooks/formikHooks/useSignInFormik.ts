@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { signInAuthWithEmailAndPassword } from "../../utils/firebase/firebase.utils.js";
 
 const initialValues = {
 	email: "",
@@ -17,17 +18,17 @@ interface formikValues {
 	email: string;
 	password: string;
 }
-const onSubmitHandler = async (values: formikValues) => {
-	alert(values);
+const onSubmitHandler = async ({ email, password }: formikValues) => {
+	await signInAuthWithEmailAndPassword(email, password).catch((error) => {
+		alert(error.message);
+	});
 };
 
 export const useFormikSignInHook = () => {
-	const formik = useFormik({
+	return useFormik({
 		initialValues: initialValues,
 		validationSchema: validationSchema,
 		onSubmit: onSubmitHandler,
-		validateOnChange: false,
-		validateOnBlur: false,
+		validateOnChange: true,
 	});
-	return formik;
 };
