@@ -8,76 +8,105 @@ import ButtonComponent from "../../../components/button/button.component.tsx";
 import "./sign-up-form.styles.scss";
 
 const SignUpFormComponent = () => {
-	const { values, errors, handleChange, handleSubmit } = useFormikSignUpHook();
+	const {
+		values,
+		errors,
+		handleChange,
+		handleSubmit,
+		touched,
+		setFieldTouched,
+		setTouched,
+		resetForm,
+	} = useFormikSignUpHook();
 
-	const inputData = [
+	const setAllFormikSignUpFieldsTouched = () => {
+		setTouched({
+			displayName: true,
+			password: true,
+			email: true,
+			confirmPassword: true,
+		});
+	};
+	const handleSignUpSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		setAllFormikSignUpFieldsTouched();
+		event.preventDefault();
+		handleSubmit(event);
+		resetForm();
+	};
+
+	const signUpInputData = [
 		{
 			type: "text",
-			inputValue: values.displayName,
+			value: values.displayName,
 			name: "displayName",
 			placeholder: "Display Name",
-			onChangeHandler: handleChange,
+			onChange: handleChange,
 			error: errors.displayName,
+			touched: touched.displayName,
+			setTouched: setFieldTouched,
 		},
 		{
 			type: "email",
-			inputValue: values.email,
+			value: values.email,
 			name: "email",
 			placeholder: "Email",
-			onChangeHandler: handleChange,
+			onChange: handleChange,
 			error: errors.email,
+			touched: touched.email,
+			setTouched: setFieldTouched,
 		},
 		{
 			type: "password",
-			inputValue: values.password,
+			value: values.password,
 			name: "password",
 			placeholder: "Password",
-			onChangeHandler: handleChange,
+			onChange: handleChange,
 			error: errors.password,
+			touched: touched.password,
+			setTouched: setFieldTouched,
 		},
 		{
 			type: "password",
-			inputValue: values.password,
+			value: values.confirmPassword,
 			name: "confirmPassword",
 			placeholder: "Confirm Password",
-			onChangeHandler: handleChange,
+			onChange: handleChange,
 			error: errors.confirmPassword,
+			touched: touched.confirmPassword,
+			setTouched: setFieldTouched,
 		},
 	];
-	const hasFormikValidationErrors = () => {
-		return Object.entries(errors);
-	};
 
-	const handleSignUpSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		if (!hasFormikValidationErrors().length) {
-			handleSubmit(event);
-		}
-	};
 	return (
 		<form onSubmit={handleSignUpSubmit} className="sign-up__form">
-			{inputData.map(
+			{signUpInputData.map(
 				(
-					{ inputValue, onChangeHandler, placeholder, error, type, name },
+					{
+						value,
+						onChange,
+						placeholder,
+						error,
+						type,
+						name,
+						touched,
+						setTouched,
+					},
 					index
 				) => (
 					<InputComponent
 						type={type}
-						inputValue={inputValue}
+						value={value}
 						name={name}
 						placeholder={placeholder}
-						onChangeHandler={onChangeHandler}
+						onChange={onChange}
 						error={error}
 						key={index}
+						touched={touched}
+						setTouched={setTouched}
 					/>
 				)
 			)}
-			<ButtonComponent
-				className="sign-up__form_button"
-				content="Sign Up"
-				color="black"
-				type="submit"
-			/>
+			<ButtonComponent type="submit">Sign UP</ButtonComponent>
 		</form>
 	);
 };
