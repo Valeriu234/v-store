@@ -1,29 +1,31 @@
+import React from "react";
+
 import "./button.styles.scss";
 
 interface ButtonProps {
-	content: string;
-	color: string;
-	className?: string;
-	onClickHandler?: () => Promise<void>;
+	children: React.ReactNode;
+	onClick?: () => Promise<void>;
 	type?: "button" | "submit" | "reset";
+	buttonType?: "google" | "inverted" | "default";
 }
+
+const BUTTON_CLASS_TYPES = {
+	google: "google-sign-in",
+	inverted: "inverted",
+	default: "",
+};
 const ButtonComponent = ({
-	content,
-	color,
-	className,
-	onClickHandler,
-	type,
+	buttonType = "default",
+	children,
+	...otherProps
 }: ButtonProps) => {
 	return (
 		<button
-			style={{ backgroundColor: `${color}` }}
-			className={`button ${className}`}
-			onClick={onClickHandler}
-			type={type}
+			className={`button-container ${BUTTON_CLASS_TYPES[buttonType]}`}
+			{...otherProps}
 		>
-			{content}
+			{children}
 		</button>
 	);
 };
-
 export default ButtonComponent;
