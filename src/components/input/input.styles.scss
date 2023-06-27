@@ -1,3 +1,13 @@
+@mixin shrinkLabel {
+  left: 20px;
+  top: 10px;
+  opacity: 1;
+  transform: translateY(-35px);
+  font-size: var(--font-size-small);
+  font-weight: normal;
+  transition: .2s ease-in;
+}
+
 .input-container {
   position: relative;
   .input {
@@ -9,6 +19,13 @@
     padding-left: var(--small-padding);
     border: none;
     border-bottom: 1px solid black;
+
+    &:focus ~ .input-label {
+      @include shrinkLabel
+    }
+    &:focus::placeholder {
+      color: transparent;
+    }
   }
 
   .error {
@@ -18,20 +35,10 @@
 
   .input-label {
     position: absolute;
-    font-size: var(--default-font-size)
-  }
-  .disabled {
+    font-size: var(--default-font-size);
     left: 20px;
     top: 30px;
     opacity: 0;
   }
-  .active {
-    left: 20px;
-    top: 10px;
-    opacity: 1;
-    transform: translateY(-35px);
-    font-size: var(--font-size-small);
-    font-weight: normal;
-    transition: .2s ease-in;
-  }
+
 }
