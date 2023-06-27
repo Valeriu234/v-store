@@ -14,6 +14,5 @@ module.exports = {
 		"react-refresh/only-export-components": "warn",
 		quotes: ["error", "double"],
 		"no-console": "error",
-		"prettier/prettier": "error",
 	},
 };

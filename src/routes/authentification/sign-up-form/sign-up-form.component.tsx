@@ -1,59 +1,112 @@
-import React, { useState } from "react";
+import React from "react";
 
-import "./sign-up-form.styles.scss";
+import { useFormikSignUpHook } from "../../../hooks/formikHooks/useSignUpFormik.ts";
 
 import InputComponent from "../../../components/input/input.component.tsx";
 import ButtonComponent from "../../../components/button/button.component.tsx";
 
-const SignUpFormComponent = () => {
-	const [signUpValues, setSignUpValues] = useState({
-		displayName: "",
-		email: "",
-		password: "",
-		confirmPassword: "",
-	});
+import "./sign-up-form.styles.scss";
 
-	const onChange = (
-		e: React.ChangeEvent<HTMLInputElement>,
-		property: string
-	) => {
-		setSignUpValues({ ...signUpValues, [property]: e.target.value });
+const SignUpFormComponent = () => {
+	const {
+		values,
+		errors,
+		handleChange,
+		handleSubmit,
+		touched,
+		setFieldTouched,
+		setTouched,
+		resetForm,
+	} = useFormikSignUpHook();
+
+	const setAllFormikSignUpFieldsTouched = () => {
+		setTouched({
+			displayName: true,
+			password: true,
+			email: true,
+			confirmPassword: true,
+		});
 	};
+	const handleSignUpSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		setAllFormikSignUpFieldsTouched();
+		event.preventDefault();
+		handleSubmit(event);
+		resetForm();
+	};
+
+	const signUpInputData = [
+		{
+			type: "text",
+			value: values.displayName,
+			name: "displayName",
+			placeholder: "Display Name",
+			onChange: handleChange,
+			error: errors.displayName,
+			touched: touched.displayName,
+			setTouched: setFieldTouched,
+		},
+		{
+			type: "email",
+			value: values.email,
+			name: "email",
+			placeholder: "Email",
+			onChange: handleChange,
+			error: errors.email,
+			touched: touched.email,
+			setTouched: setFieldTouched,
+		},
+		{
+			type: "password",
+			value: values.password,
+			name: "password",
+			placeholder: "Password",
+			onChange: handleChange,
+			error: errors.password,
+			touched: touched.password,
+			setTouched: setFieldTouched,
+		},
+		{
+			type: "password",
+			value: values.confirmPassword,
+			name: "confirmPassword",
+			placeholder: "Confirm Password",
+			onChange: handleChange,
+			error: errors.confirmPassword,
+			touched: touched.confirmPassword,
+			setTouched: setFieldTouched,
+		},
+	];
+
 	return (
-		<form className="sign-up__form">
-			<InputComponent
-				type="text"
-				placeholder="Display Name"
-				name="displayName"
-				inputValue={signUpValues.displayName}
-				onChange={onChange}
-			/>
-			<InputComponent
-				type="email"
-				inputValue={signUpValues.email}
-				name="email"
-				placeholder="Email"
-				onChange={onChange}
-			/>
-			<InputComponent
-				type="password"
-				inputValue={signUpValues.password}
-				name="password"
-				placeholder="Password"
-				onChange={onChange}
-			/>
-			<InputComponent
-				type="password"
-				inputValue={signUpValues.confirmPassword}
-				name="confirmPassword"
-				placeholder="Confirm password"
-				onChange={onChange}
-			/>
-			<ButtonComponent
-				className="sign-up__form_button"
-				content="Sign Up"
-				color="black"
-			/>
+		<form onSubmit={handleSignUpSubmit} className="sign-up__form">
+			{signUpInputData.map(
+				(
+					{
+						value,
+						onChange,
+						placeholder,
+						error,
+						type,
+						name,
+						touched,
+						setTouched,
+					},
+					index
+				) => (
+					<InputComponent
+						type={type}
+						value={value}
+						name={name}
+						placeholder={placeholder}
+						onChange={onChange}
+						error={error}
+						key={index}
+						touched={touched}
+						setTouched={setTouched}
+					/>
+				)
+			)}
+			<ButtonComponent type="submit">Sign UP</ButtonComponent>
 		</form>
 	);
 };

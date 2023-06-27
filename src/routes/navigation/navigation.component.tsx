@@ -5,8 +5,8 @@ import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { ReactComponent as ShoppingCart } from "../../assets/shopping-cart.svg";
 import { ReactComponent as BurgerMenu } from "../../assets/burger-menu.svg";
 
-import "./navigation.styles.scss";
 import { ROUTES } from "../routes.constants.ts";
+import "./navigation.styles.scss";
 
 const NavigationComponent = () => {
 	const navLinks = [
@@ -35,8 +35,8 @@ const NavigationComponent = () => {
 				</NavigationItemComponent>
 
 				<div className="navigation__links">
-					{navLinks.map(({ route, content }) => (
-						<NavigationItemComponent route={route}>
+					{navLinks.map(({ route, content }, index) => (
+						<NavigationItemComponent key={index} route={route}>
 							{content}
 						</NavigationItemComponent>
 					))}

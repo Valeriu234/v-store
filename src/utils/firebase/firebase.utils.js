@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
 import {
 	getAuth,
-	signInWithRedirect,
 	signInWithPopup,
 	GoogleAuthProvider,
+	signInWithEmailAndPassword,
+	createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -12,12 +13,12 @@ import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyC08w69kQahWpcErtNIVvYJwlMYxbVx_9w",
-	authDomain: "v-store-8046f.firebaseapp.com",
-	projectId: "v-store-8046f",
-	storageBucket: "v-store-8046f.appspot.com",
-	messagingSenderId: "471068216041",
-	appId: "1:471068216041:web:984c56e33a1876a289fe78",
+	apiKey: import.meta.env.VITE_API_KEY,
+	authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
@@ -33,7 +34,10 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+	userAuth,
+	additionalInformation = {}
+) => {
 	const userDocRef = doc(db, "users", userAuth.uid);
 	const userSnapshot = await getDoc(userDocRef);
 
@@ -45,10 +49,22 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 				displayName,
 				email,
 				createdAt,
+				...additionalInformation,
 			});
 		} catch (error) {
 			throw new Error("error creating the user", error);
 		}
 	}
 	return userDocRef;
+};
+
+export const createAuthWithEmailAndPassword = async (email, password) => {
+	if (!email || !password) return;
+
+	return await createUserWithEmailAndPassword(auth, email, password);
+};
+export const signInAuthWithEmailAndPassword = async (email, password) => {
+	if (!email || !password) return;
+
+	return await signInWithEmailAndPassword(auth, email, password);
 };
