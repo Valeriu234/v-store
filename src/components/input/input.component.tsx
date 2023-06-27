@@ -1,49 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./input.styles.scss";
+import { FormikErrors } from "formik";
+import { formikValues } from "../../hooks/formikHooks/useSignUpFormik.ts";
 
 interface InputComponentProps {
-	onChangeHandler: (
-		e: React.ChangeEvent<HTMLInputElement>,
-		property: string
-	) => void;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>, property: string) => void;
 	placeholder: string;
-	inputValue: string;
+	value: string;
 	type: string;
 	name: string;
 	error?: string;
+	touched?: boolean;
+	setTouched: (
+		field: string,
+		touched?: boolean,
+		shouldValidate?: boolean
+	) => Promise<FormikErrors<formikValues>> | Promise<void>;
 }
 
 const InputComponent = ({
-	onChangeHandler,
-	placeholder,
-	inputValue,
-	type,
-	name,
 	error,
+	touched,
+	setTouched,
+	name,
+	placeholder,
+	type,
+	onChange,
+	value,
 }: InputComponentProps) => {
-	const [touched, setTouched] = useState(false);
-	const changeStylesLabel = () => {
-		if (inputValue.length !== 0) {
-			return "input-label active";
-		} else {
-			return "input-label disabled";
-		}
+	const touchHandler = () => {
+		setTouched(name, true, true);
 	};
 	return (
 		<>
 			<div className="input-container">
 				<input
 					onChange={(e) => {
-						onChangeHandler(e, name);
+						onChange(e, name);
 					}}
 					className="input"
 					placeholder={placeholder}
+					value={value}
 					type={type}
 					name={name}
-					onBlur={() => setTouched(true)}
+					onBlur={touchHandler}
 				/>
-				<span className={changeStylesLabel()}>{placeholder}</span>
+				<label htmlFor={name} className="input-label">
+					{placeholder}
+				</label>
 				{error && touched && <span className="error">{error}</span>}
 			</div>
 		</>
