@@ -42,7 +42,7 @@ export const useFormikSignUpHook = () => {
 		const response = await createAuthWithEmailAndPassword(
 			email,
 			password
-		).catch((res) => alert(res.message));
+		).catch((error) => alert(error.message));
 
 		await createUserDocumentFromAuth(response?.user, {
 			displayName: displayName,
