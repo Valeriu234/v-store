@@ -19,6 +19,10 @@ const SignUpFormComponent = () => {
 		resetForm,
 	} = useFormikSignUpHook();
 
+	const hasFormikErrors = () => {
+		return Object.values(errors);
+	};
+
 	const setAllFormikSignUpFieldsTouched = () => {
 		setTouched({
 			displayName: true,
@@ -27,11 +31,16 @@ const SignUpFormComponent = () => {
 			confirmPassword: true,
 		});
 	};
+
 	const handleSignUpSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		setAllFormikSignUpFieldsTouched();
 		event.preventDefault();
-		handleSubmit(event);
-		resetForm();
+		if (!hasFormikErrors().length) {
+			handleSubmit(event);
+		}
+		setTimeout(() => {
+			resetForm();
+		});
 	};
 
 	const signUpInputData = [

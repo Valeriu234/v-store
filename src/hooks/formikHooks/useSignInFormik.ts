@@ -18,13 +18,14 @@ interface formikValues {
 	email: string;
 	password: string;
 }
-const onSubmitHandler = async ({ email, password }: formikValues) => {
-	await signInAuthWithEmailAndPassword(email, password).catch((error) => {
-		alert(error.message);
-	});
-};
 
 export const useFormikSignInHook = () => {
+	const onSubmitHandler = async ({ email, password }: formikValues) => {
+		await signInAuthWithEmailAndPassword(email, password).catch((error) => {
+			alert(error.message);
+		});
+	};
+
 	return useFormik({
 		initialValues: initialValues,
 		validationSchema: validationSchema,

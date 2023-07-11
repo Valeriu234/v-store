@@ -4,7 +4,7 @@ import "./button.styles.scss";
 
 interface ButtonProps {
 	children: React.ReactNode;
-	onClick?: () => Promise<void>;
+	onClick?: () => void;
 	type?: "button" | "submit" | "reset";
 	buttonType?: "google" | "inverted" | "default";
 }

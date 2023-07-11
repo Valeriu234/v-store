@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import {
-	signInWithGooglePopup,
-	createUserDocumentFromAuth,
-} from "../../../utils/firebase/firebase.utils.js";
+import { signInWithGooglePopup } from "../../../utils/firebase/firebase.utils.js";
 import { useFormikSignInHook } from "../../../hooks/formikHooks/useSignInFormik.ts";
+import { UserContext } from "../../../contexts/user.context.tsx";
 
 import InputComponent from "../../../components/input/input.component.tsx";
-import ButtonComponent from "../../../components/button/button.component.tsx";
 
+import ButtonComponent from "../../../components/button/button.component.tsx";
+import { delayFunction } from "../../../utils/delay.ts";
 import "./sign-in-form.styles.scss";
 
 const SignInFormComponent = () => {
+	const { currentUser } = useContext(UserContext);
+	const navigate = useNavigate();
 	const {
 		handleChange,
 		values,
@@ -20,6 +22,7 @@ const SignInFormComponent = () => {
 		setFieldTouched,
 		setTouched,
 		handleSubmit,
+		resetForm,
 	} = useFormikSignInHook();
 
 	const signInInputData = [
@@ -45,6 +48,10 @@ const SignInFormComponent = () => {
 		},
 	];
 
+	const hasFormikErrors = () => {
+		return Object.keys(errors);
+	};
+
 	const setAllFormikSignInFieldsTouched = () => {
 		setTouched({
 			email: true,
@@ -53,30 +60,39 @@ const SignInFormComponent = () => {
 	};
 
 	const logGoogleUser = async () => {
-		const { user } = await signInWithGooglePopup();
-		await createUserDocumentFromAuth(user);
+		await signInWithGooglePopup();
 	};
 
 	const handleSignInSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setAllFormikSignInFieldsTouched();
-		handleSubmit();
+		if (!hasFormikErrors().length) {
+			handleSubmit();
+		}
+		if (!currentUser) {
+			navigate("/shop");
+		}
+		delayFunction(resetForm, 300);
 	};
 
 	return (
 		<form onSubmit={handleSignInSubmit} className="sign-in__form">
 			{signInInputData.map(
-				({
-					inputValue,
-					onChange,
-					placeholder,
-					setTouched,
-					touched,
-					name,
-					error,
-					type,
-				}) => (
+				(
+					{
+						inputValue,
+						onChange,
+						placeholder,
+						setTouched,
+						touched,
+						name,
+						error,
+						type,
+					},
+					index
+				) => (
 					<InputComponent
+						key={index}
 						type={type}
 						placeholder={placeholder}
 						onChange={onChange}
