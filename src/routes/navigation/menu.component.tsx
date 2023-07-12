@@ -2,13 +2,15 @@ import React, { useContext, useState } from "react";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils.js";
 
+import { UserContext } from "../../contexts/user.context.tsx";
+import { CartContext } from "../../contexts/cart.context.tsx";
 import NavigationItemComponent from "./navigation-item.component.tsx";
 import PopupComponent from "../../components/popup/popup.component.tsx";
 import ButtonComponent from "../../components/button/button.component.tsx";
-import { UserContext } from "../../contexts/user.context.tsx";
+import CartDropdownComponent from "../../components/cart-dropdown/cart-dropdown.component.tsx";
+import CartIconComponent from "../../components/cart-icon/cart-icon.component.tsx";
 
 import { ROUTES } from "../routes.constants.ts";
-import { ReactComponent as ShoppingCart } from "../../assets/shopping-cart.svg";
 
 interface MenuComponentProps {
 	className?: string;
@@ -20,12 +22,20 @@ const MenuComponent = ({
 	isMobileMenuOpen,
 	setIsMobileMenuOpen,
 }: MenuComponentProps) => {
+	const { currentUser } = useContext(UserContext);
+	const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
 	const menuClassName = `${className} ${isMobileMenuOpen ? "open" : ""}`;
-	const showCart = !isMobileMenuOpen ? <ShoppingCart /> : "SHOPPING CART";
+
+	const showCartIconOrText = !isMobileMenuOpen ? (
+		<CartIconComponent />
+	) : (
+		"SHOPPING CART"
+	);
+	const showCart = currentUser ? showCartIconOrText : null;
+
 	const isMobileMenu =
 		isMobileMenuOpen !== undefined ? menuClassName : className;
-	const { currentUser } = useContext(UserContext);
 
 	const showSignInOrSignOut = currentUser ? (
 		<span>SIGN OUT</span>
@@ -44,7 +54,13 @@ const MenuComponent = ({
 	const closeMobileMenu = () => {
 		if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
 	};
-	const allowSwitchRoute = (e: React.MouseEvent<HTMLElement>) => {
+	const allowSwitchCartRoute = (e: React.MouseEvent<HTMLElement>) => {
+		if (currentUser) {
+			e.preventDefault();
+			setIsCartOpen(!isCartOpen);
+		}
+	};
+	const allowSwitchSignUpRoute = (e: React.MouseEvent<HTMLElement>) => {
 		if (currentUser) {
 			e.preventDefault();
 			setIsPopupOpen(true);
@@ -63,11 +79,12 @@ const MenuComponent = ({
 		{
 			route: ROUTES.SIGN_IN,
 			content: showSignInOrSignOut,
-			allowSwitchRoute: allowSwitchRoute,
+			allowSwitchRoute: allowSwitchSignUpRoute,
 		},
 		{
 			route: ROUTES.SHOPPING_CART,
 			content: showCart,
+			allowSwitchRoute: allowSwitchCartRoute,
 		},
 	];
 	return (
@@ -93,6 +110,7 @@ const MenuComponent = ({
 					<ButtonComponent onClick={closePopup}>No</ButtonComponent>
 				</div>
 			</PopupComponent>
+			{isCartOpen && <CartDropdownComponent />}
 		</>
 	);
 };
