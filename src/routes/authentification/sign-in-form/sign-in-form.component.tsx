@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { signInWithGooglePopup } from "../../../utils/firebase/firebase.utils.js";
 import { useFormikSignInHook } from "../../../hooks/formikHooks/useSignInFormik.ts";
 import { UserContext } from "../../../contexts/user.context.tsx";
-
 import InputComponent from "../../../components/input/input.component.tsx";
-
 import ButtonComponent from "../../../components/button/button.component.tsx";
+
 import { delayFunction } from "../../../utils/delay.ts";
 import "./sign-in-form.styles.scss";
 
@@ -52,6 +51,12 @@ const SignInFormComponent = () => {
 		return Object.keys(errors);
 	};
 
+	useEffect(() => {
+		if (currentUser !== null) {
+			navigate("/shop");
+		}
+	}, [currentUser, navigate]);
+
 	const setAllFormikSignInFieldsTouched = () => {
 		setTouched({
 			email: true,
@@ -63,14 +68,11 @@ const SignInFormComponent = () => {
 		await signInWithGooglePopup();
 	};
 
-	const handleSignInSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSignInSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setAllFormikSignInFieldsTouched();
 		if (!hasFormikErrors().length) {
-			handleSubmit();
-		}
-		if (!currentUser) {
-			navigate("/shop");
+			await handleSubmit();
 		}
 		delayFunction(resetForm, 300);
 	};
