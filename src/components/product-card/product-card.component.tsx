@@ -1,13 +1,23 @@
+import { useContext } from "react";
+
+import { CartContext } from "../../contexts/cart.context.tsx";
+
 import ButtonComponent from "../button/button.component.tsx";
 
 import "./product-card.styles.scss";
 
-type Product = { id: number; name: string; imageUrl: string; price: number };
+type Product = { id: string; name: string; imageUrl: string; price: number };
 interface ProductCardProps {
 	product: Product;
 }
 const ProductCardComponent = ({ product }: ProductCardProps) => {
 	const { name, imageUrl, price } = product;
+	const { addToCart } = useContext(CartContext);
+
+	const addToCartHandler = () => {
+		addToCart(product);
+	};
+
 	return (
 		<div className="product-card">
 			<img src={imageUrl} alt={`${name}`} />
@@ -15,7 +25,9 @@ const ProductCardComponent = ({ product }: ProductCardProps) => {
 				<span className="information__name">{name}</span>
 				<span className="information__price">{price}</span>
 			</div>
-			<ButtonComponent buttonType="inverted">Add to cart</ButtonComponent>
+			<ButtonComponent onClick={addToCartHandler} buttonType="inverted">
+				Add to cart
+			</ButtonComponent>
 		</div>
 	);
 };

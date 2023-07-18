@@ -7,7 +7,7 @@ import { CartContext } from "../../contexts/cart.context.tsx";
 import NavigationItemComponent from "./navigation-item.component.tsx";
 import PopupComponent from "../../components/popup/popup.component.tsx";
 import ButtonComponent from "../../components/button/button.component.tsx";
-import CartDropdownComponent from "../../components/cart-dropdown/cart-dropdown.component.tsx";
+import CartDropdownComponent from "../cart/cart-dropdown/cart-dropdown.component.tsx";
 import CartIconComponent from "../../components/cart-icon/cart-icon.component.tsx";
 
 import { ROUTES } from "../routes.constants.ts";
