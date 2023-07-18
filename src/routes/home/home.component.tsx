@@ -26,7 +26,7 @@ const HomeComponent = () => {
 		},
 		{
 			id: 4,
-			title: "womens",
+			title: "women",
 			imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
 		},
 		{
