@@ -1,9 +1,9 @@
-import { category } from "../../App.tsx";
+import { Category } from "../../routes/home/category-item/category-item.component.tsx";
 
 import "./category-item.styles.scss";
 
 interface CategoryItemProps {
-	category: category;
+	category: Category;
 }
 
 const CategoryItemComponent = ({ category }: CategoryItemProps) => {

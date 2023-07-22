@@ -9,11 +9,12 @@
 	overflow: hidden;
 	background-repeat: no-repeat;
 	background-size: cover;
+	transition: .3s ease-in;
 
 	&:hover {
 		cursor: pointer;
 		transform: scale(1.02);
-		transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+		transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 
 		& .category-body-container {
@@ -55,8 +56,9 @@
 		h2 {
 			font-weight: bold;
 			margin: 0 6px 0;
-			font-size: var(--font-size-small);
+			font-size: var(--font-size-medium);
 			color: #4a4a4a;
+			text-transform: capitalize;
 		}
 
 		p {
