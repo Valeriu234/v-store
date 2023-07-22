@@ -1,0 +1,14 @@
+.cart-item {
+  width: 100%;
+  display: flex;
+  gap: var(--medium-gaps);
+
+  .cart-item__photo {
+    width: 80px;
+  }
+  .cart-item__info{
+    .info__name {
+      margin-bottom: 15px;
+    }
+  }
+}
