@@ -1,16 +1,16 @@
 import React, { useContext, useState } from "react";
 
-import { signOutUser } from "../../utils/firebase/firebase.utils.js";
+import { signOutUser } from "../../../utils/firebase/firebase.utils.js";
 
-import { UserContext } from "../../contexts/user.context.tsx";
-import { CartContext } from "../../contexts/cart.context.tsx";
-import NavigationItemComponent from "./navigation-item.component.tsx";
-import PopupComponent from "../../components/popup/popup.component.tsx";
-import ButtonComponent from "../../components/button/button.component.tsx";
-import CartDropdownComponent from "../cart/cart-dropdown/cart-dropdown.component.tsx";
-import CartIconComponent from "../../components/cart-icon/cart-icon.component.tsx";
+import { UserContext } from "../../../contexts/user.context.tsx";
+import { CartContext } from "../../../contexts/cart.context.tsx";
+import NavigationItemComponent from "../navigation-item.component.tsx";
+import PopupComponent from "../../../components/popup/popup.component.tsx";
+import ButtonComponent from "../../../components/button/button.component.tsx";
+import CartDropdownComponent from "../../cart/cart-dropdown/cart-dropdown.component.tsx";
+import CartIconComponent from "../../../components/cart-icon/cart-icon.component.tsx";
 
-import { ROUTES } from "../routes.constants.ts";
+import { ROUTES } from "../../routes.constants.ts";
 
 interface MenuComponentProps {
 	className?: string;

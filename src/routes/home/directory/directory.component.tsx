@@ -1,11 +1,10 @@
 import CategoryItemComponent from "../category-item/category-item.component.tsx";
-
-import type { category } from "../../../App.tsx";
+import type { Category } from "../category-item/category-item.component.tsx";
 
 import "./directory.styles.scss";
 
 interface DirectoryProps {
-	categories: Array<category>;
+	categories: Array<Category>;
 }
 
 const DirectoryComponent = ({ categories }: DirectoryProps) => {

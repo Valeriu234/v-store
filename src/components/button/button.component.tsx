@@ -7,6 +7,7 @@ interface ButtonProps {
 	onClick?: () => void;
 	type?: "button" | "submit" | "reset";
 	buttonType?: "google" | "inverted" | "default";
+	disabled?: boolean;
 }
 
 const BUTTON_CLASS_TYPES = {

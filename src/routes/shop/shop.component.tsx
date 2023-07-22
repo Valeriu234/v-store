@@ -1,15 +1,21 @@
-import { ProductsContext } from "../../contexts/products.context.tsx";
 import { useContext } from "react";
+
+import { CategoriesContext } from "../../contexts/products.context.tsx";
 import ProductCardComponent from "../../components/product-card/product-card.component.tsx";
+
 import "./shop.styles.scss";
 const ShopComponent = () => {
-	const { products } = useContext(ProductsContext);
+	const { selectedShopProducts, selectedCategory } =
+		useContext(CategoriesContext);
 	return (
-		<div className="shop">
-			{products.map((product) => (
-				<ProductCardComponent key={product.id} product={product} />
-			))}
-		</div>
+		<>
+			<h1 className="category-title">{selectedCategory}</h1>
+			<div className="shop">
+				{selectedShopProducts.map((product) => (
+					<ProductCardComponent key={product.id} product={product} />
+				))}
+			</div>
+		</>
 	);
 };
 

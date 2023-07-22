@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useFormikSignUpHook } from "../../../hooks/formikHooks/useSignUpFormik.ts";
+
 import InputComponent from "../../../components/input/input.component.tsx";
 import ButtonComponent from "../../../components/button/button.component.tsx";
 

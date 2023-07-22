@@ -1,12 +1,10 @@
 import { useContext } from "react";
 
-import { CartContext } from "../../contexts/cart.context.tsx";
-
+import { CartContext, Product } from "../../contexts/cart.context.tsx";
 import ButtonComponent from "../button/button.component.tsx";
 
 import "./product-card.styles.scss";
 
-type Product = { id: string; name: string; imageUrl: string; price: number };
 interface ProductCardProps {
 	product: Product;
 }
