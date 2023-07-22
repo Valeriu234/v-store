@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { signInWithGooglePopup } from "../../../utils/firebase/firebase.utils.js";
 import { useFormikSignInHook } from "../../../hooks/formikHooks/useSignInFormik.ts";
+import { delayFunction } from "../../../utils/delay.ts";
+
 import { UserContext } from "../../../contexts/user.context.tsx";
 import InputComponent from "../../../components/input/input.component.tsx";
 import ButtonComponent from "../../../components/button/button.component.tsx";
 
-import { delayFunction } from "../../../utils/delay.ts";
 import "./sign-in-form.styles.scss";
 
 const SignInFormComponent = () => {
