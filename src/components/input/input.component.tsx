@@ -1,8 +1,8 @@
 import React from "react";
-
-import "./input.styles.scss";
 import { FormikErrors } from "formik";
+
 import { formikValues } from "../../hooks/formikHooks/useSignUpFormik.ts";
+import "./input.styles.scss";
 
 interface InputComponentProps {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>, property: string) => void;
