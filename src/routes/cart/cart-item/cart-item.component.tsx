@@ -1,18 +1,49 @@
-import "./cart-item.styles.scss";
-import { Product } from "../../../contexts/cart.context.tsx";
+import { ProductWithQuantity } from "../../../contexts/cart.context.tsx";
+import QuantityControllerComponent from "../../../components/quantity-controller/quantity-controller.component.tsx";
+
+import { ReactComponent as CloseIcon } from "../../../assets/close.svg";
 
 interface CartItemProps {
-	cartProductWithCount: Product;
+	product: ProductWithQuantity;
+	incrementProductByOne(idProductToIncrement: string): void;
+	decrementProductByOne(idProductToDecrement: string): void;
+	deleteProductFromCart(idProductToDelete: string): void;
 }
-const CartItemComponent = ({ cartProductWithCount }: CartItemProps) => {
-	const { price, name, imageUrl, quantity } = cartProductWithCount;
+const CartItemComponent = ({
+	product,
+	incrementProductByOne,
+	decrementProductByOne,
+	deleteProductFromCart,
+}: CartItemProps) => {
+	const { name, imageUrl, quantity, id, price } = product;
+
+	const incrementQuantityHandler = () => {
+		incrementProductByOne(id);
+	};
+
+	const decrementQuantityHandler = () => {
+		decrementProductByOne(id);
+	};
+
+	const deleteProduct = () => {
+		deleteProductFromCart(id);
+	};
 	return (
-		<div className="cart-item">
-			<img className="cart-item__photo" src={imageUrl} alt={name} />
-			<div className="cart-item__info">
-				<p className="info__name">{name}</p>
-				<span className="info__count">{quantity} x </span>
-				<span className="info__price">${price}</span>
+		<div className="products__item">
+			<div className="img__container">
+				<img className="item__img" src={imageUrl} alt={name} />
+			</div>
+			<span className="item__info">{name}</span>
+			<div className="item__info">
+				<QuantityControllerComponent
+					quantity={quantity}
+					decrementQuantityHandler={decrementQuantityHandler}
+					incrementQuantityHandler={incrementQuantityHandler}
+				/>
+			</div>
+			<span className="item__info">{price}</span>
+			<div className="item__info">
+				<CloseIcon onClick={deleteProduct} className="info__close-icon" />
 			</div>
 		</div>
 	);
