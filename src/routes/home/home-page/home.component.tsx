@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
 
-import DirectoryComponent from "./directory/directory.component.tsx";
+import DirectoryComponent from "../directory/directory.component.tsx";
+import { SelectedCategory } from "../../../contexts/products.context.tsx";
 
 export type category = {
-	title: string;
+	title: SelectedCategory;
 	id: number;
 	imageUrl: string;
 };
@@ -26,7 +27,7 @@ const HomeComponent = () => {
 		},
 		{
 			id: 4,
-			title: "women",
+			title: "womens",
 			imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
 		},
 		{
@@ -35,6 +36,7 @@ const HomeComponent = () => {
 			imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
 		},
 	];
+
 	return (
 		<>
 			<Outlet />
