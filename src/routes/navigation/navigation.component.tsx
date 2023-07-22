@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import NavigationItemComponent from "./navigation-item.component.tsx";
-import MenuComponent from "./menu.component.tsx";
+import MenuComponent from "./menu/menu.component.tsx";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { ReactComponent as BurgerMenu } from "../../assets/burger-menu.svg";
