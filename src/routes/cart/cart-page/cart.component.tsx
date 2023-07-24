@@ -12,6 +12,7 @@ const CartComponent = () => {
 		incrementProductByOne,
 		decrementProductByOne,
 		deleteProductFromCart,
+		productsSum,
 	} = useContext(CartContext);
 
 	return (
@@ -31,6 +32,7 @@ const CartComponent = () => {
 					/>
 				))}
 			</div>
+			<h1 className="cart__total-sum">Total : {productsSum} $</h1>
 		</div>
 	);
 };
