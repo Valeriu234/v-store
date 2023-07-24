@@ -68,14 +68,23 @@ export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
 	}, []);
 
 	const changeSelectedProducts = useCallback(() => {
+		const selectedCategory = localStorage.getItem("selected-category");
 		if (selectedCategory && categories) {
-			setSelectedShopProducts(categories[selectedCategory]);
+			setSelectedShopProducts(categories[selectedCategory as SelectedCategory]);
 		}
-	}, [categories, selectedCategory]);
+	}, [categories]);
 
 	useEffect(() => {
 		changeSelectedProducts();
 	}, [changeSelectedProducts]);
+
+	useEffect(() => {
+		const setSelectedCategoryLocalStorage = () => {
+			if (selectedCategory)
+				localStorage.setItem("selected-category", selectedCategory);
+		};
+		setSelectedCategoryLocalStorage();
+	}, [selectedCategory]);
 
 	return (
 		<CategoriesContext.Provider value={value}>
