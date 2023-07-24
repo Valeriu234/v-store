@@ -13,16 +13,16 @@ export interface Categories {
 	hats: Array<Product>;
 	jackets: Array<Product>;
 	sneakers: Array<Product>;
-	womens: Array<Product>;
-	mens: Array<Product>;
+	women: Array<Product>;
+	men: Array<Product>;
 }
 
 export type SelectedCategory =
 	| "hats"
 	| "jackets"
 	| "sneakers"
-	| "womens"
-	| "mens";
+	| "women"
+	| "men";
 
 interface CategoriesContext {
 	categories: Categories | null;

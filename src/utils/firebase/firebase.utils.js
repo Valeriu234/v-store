@@ -55,7 +55,7 @@ export const getCategoriesAndDocuments = async () => {
 			acc[title.toLowerCase()] = items;
 			return acc;
 		},
-		{ hats: [], jackets: [], sneakers: [], womens: [], mens: [] }
+		{ hats: [], jackets: [], sneakers: [], women: [], men: [] }
 	);
 	return categoryMap;
 };
