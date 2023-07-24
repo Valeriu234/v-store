@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export interface Product {
 	id: string;
@@ -12,6 +12,8 @@ export interface ProductWithQuantity extends Product {
 }
 
 interface CartContext {
+	productsQuantity: number;
+	productsSum: number;
 	isCartOpen: boolean;
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	cartProducts: Array<ProductWithQuantity>;
@@ -79,6 +81,8 @@ export const CartContext = createContext<CartContext>({
 	incrementProductByOne() {},
 	decrementProductByOne() {},
 	deleteProductFromCart() {},
+	productsQuantity: 0,
+	productsSum: 0,
 });
 /* eslint-enable @typescript-eslint/no-empty-function */
 interface CartContextProviderProps {
@@ -90,6 +94,8 @@ export const CartProvider = ({ children }: CartContextProviderProps) => {
 	const [cartProducts, setCartProducts] = useState<Array<ProductWithQuantity>>(
 		[]
 	);
+	const [productsQuantity, setProductsQuantity] = useState<number>(0);
+	const [productsSum, setProductsSum] = useState<number>(0);
 
 	const addToCart = (productToAdd: Product) => {
 		setCartProducts(addToCartItem(cartProducts, productToAdd));
@@ -107,6 +113,24 @@ export const CartProvider = ({ children }: CartContextProviderProps) => {
 		setCartProducts(removeProduct(cartProducts, idProductToDelete));
 	};
 
+	useEffect(() => {
+		const calculateProductsQuantity = () => {
+			return cartProducts.reduce((accumulator, item) => {
+				return accumulator + item.quantity;
+			}, 0);
+		};
+		setProductsQuantity(calculateProductsQuantity());
+	}, [cartProducts]);
+
+	useEffect(() => {
+		const calculateSumOfProducts = () => {
+			return cartProducts.reduce((accumulator, item) => {
+				return accumulator + item.quantity * item.price;
+			}, 0);
+		};
+		setProductsSum(calculateSumOfProducts());
+	}, [cartProducts]);
+
 	const value = {
 		isCartOpen,
 		setIsCartOpen,
@@ -116,6 +140,8 @@ export const CartProvider = ({ children }: CartContextProviderProps) => {
 		incrementProductByOne,
 		decrementProductByOne,
 		deleteProductFromCart,
+		productsQuantity,
+		productsSum,
 	};
 	return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
