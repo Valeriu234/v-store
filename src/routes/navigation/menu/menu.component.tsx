@@ -67,6 +67,9 @@ const MenuComponent = ({
 			e.preventDefault();
 			setIsPopupOpen(true);
 		}
+		if (!currentUser && setIsMobileMenuOpen) {
+			setIsMobileMenuOpen(false);
+		}
 	};
 
 	const closeMobileMenuOnClick = () => {

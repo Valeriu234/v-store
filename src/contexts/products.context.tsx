@@ -47,7 +47,9 @@ interface CategoriesProviderProps {
 export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
 	const [categories, setCategories] = useState<Categories | null>(null);
 	const [selectedCategory, setSelectedCategory] =
-		useState<null | SelectedCategory>(null);
+		useState<null | SelectedCategory>(
+			() => localStorage.getItem("selected-category") as SelectedCategory
+		);
 	const [selectedShopProducts, setSelectedShopProducts] = useState<
 		Array<Product>
 	>([]);
@@ -68,11 +70,10 @@ export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
 	}, []);
 
 	const changeSelectedProducts = useCallback(() => {
-		const selectedCategory = localStorage.getItem("selected-category");
 		if (selectedCategory && categories) {
-			setSelectedShopProducts(categories[selectedCategory as SelectedCategory]);
+			setSelectedShopProducts(categories[selectedCategory]);
 		}
-	}, [categories]);
+	}, [categories, selectedCategory]);
 
 	useEffect(() => {
 		changeSelectedProducts();
@@ -80,8 +81,10 @@ export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
 
 	useEffect(() => {
 		const setSelectedCategoryLocalStorage = () => {
-			if (selectedCategory)
-				localStorage.setItem("selected-category", selectedCategory);
+			localStorage.setItem(
+				"selected-category",
+				selectedCategory as SelectedCategory
+			);
 		};
 		setSelectedCategoryLocalStorage();
 	}, [selectedCategory]);

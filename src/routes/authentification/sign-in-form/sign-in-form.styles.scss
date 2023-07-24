@@ -7,5 +7,11 @@
   .sign-in__form_buttons {
     display: flex;
     justify-content: space-between;
+
+
+    @media only screen and ($phone) {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }

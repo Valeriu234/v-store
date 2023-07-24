@@ -4,4 +4,9 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: var(--medium-margin);
+
+  @media only screen and ($phone) {
+    height: 700px;
+    flex-direction: column;
+  }
 }
