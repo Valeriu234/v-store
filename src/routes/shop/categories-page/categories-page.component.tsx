@@ -8,7 +8,7 @@ export type category = {
 	id: number;
 	imageUrl: string;
 };
-const HomeComponent = () => {
+const CategoriesPageComponent = () => {
 	const categories: Array<category> = [
 		{
 			id: 1,
@@ -45,4 +45,4 @@ const HomeComponent = () => {
 	);
 };
 
-export default HomeComponent;
+export default CategoriesPageComponent;
