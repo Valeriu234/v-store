@@ -1,0 +1,37 @@
+.about__fashion-girl {
+  display: flex;
+  justify-content: center;
+  max-width: 250px;
+  height: 80%;
+
+
+
+  .fashion-girl__image {
+    width: auto;
+    height: 150px;
+
+    @media only screen and ($medium-tablet) {
+      height: 100px;
+    }
+    @media only screen and ($phone) {
+      height: 50px;
+    }
+  }
+
+}
+.about__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70%;
+  gap: var(--small-gaps);
+
+  .description__text {
+    font-family: 'Dancing Script', cursive;
+    font-size: var(--font-size-medium);
+
+    @media only screen and ($phone) {
+      font-size: 20px;
+    }
+  }
+}
