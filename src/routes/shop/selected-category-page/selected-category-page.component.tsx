@@ -1,10 +1,11 @@
 import { useContext } from "react";
 
-import { CategoriesContext } from "../../contexts/products.context.tsx";
-import ProductCardComponent from "../../components/product-card/product-card.component.tsx";
+import { CategoriesContext } from "../../../contexts/products.context.tsx";
+import ProductCardComponent from "../../../components/product-card/product-card.component.tsx";
 
-import "./shop.styles.scss";
-const ShopComponent = () => {
+import "./selected-category-page.styles.scss";
+
+const SelectedCategoryPageComponent = () => {
 	const { selectedShopProducts, selectedCategory } =
 		useContext(CategoriesContext);
 	return (
@@ -19,4 +20,4 @@ const ShopComponent = () => {
 	);
 };
 
-export default ShopComponent;
+export default SelectedCategoryPageComponent;

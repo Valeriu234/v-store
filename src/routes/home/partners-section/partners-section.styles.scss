@@ -1,0 +1,26 @@
+.banners {
+  display: flex;
+  width: 100%;
+  border: 1px solid black;
+  justify-content: space-between;
+  height: auto;
+  align-items: center;
+  overflow: hidden;
+  margin-top: var(--medium-margin);
+  margin-bottom: var(--medium-margin);
+
+  @media only screen and ($medium-tablet) {
+    flex-direction: column;
+  }
+
+  .image-container {
+    max-width: 190px;
+    max-height: 150px;
+
+    .banners__img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+}

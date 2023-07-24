@@ -10,6 +10,10 @@
   top: 90px;
   right: 40px;
   z-index: 5;
+  
+  @media only screen and ($large-tablet) {
+    display: none;
+  }
 
   .empty-message {
     font-size: 18px;
@@ -21,7 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     gap: var(--medium-gaps);
 
   }

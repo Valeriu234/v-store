@@ -1,14 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { category } from "../../shop/categories-page/categories-page.component.tsx";
+import CategoryItemComponent from "../../shop/category-item/category-item.component.tsx";
 
-import DirectoryComponent from "../directory/directory.component.tsx";
-import { SelectedCategory } from "../../../contexts/products.context.tsx";
+import "./type-products-section.styles.scss";
 
-export type category = {
-	title: SelectedCategory;
-	id: number;
-	imageUrl: string;
-};
-const HomeComponent = () => {
+const TypeProductsSectionComponent = () => {
 	const categories: Array<category> = [
 		{
 			id: 1,
@@ -36,13 +31,16 @@ const HomeComponent = () => {
 			imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
 		},
 	];
-
 	return (
 		<>
-			<Outlet />
-			<DirectoryComponent categories={categories} />
+			<h2 className="section-title">Types of products</h2>
+			<div className="type-products">
+				{categories.map((category) => (
+					<CategoryItemComponent key={category.id} category={category} />
+				))}
+			</div>
 		</>
 	);
 };
 
-export default HomeComponent;
+export default TypeProductsSectionComponent;

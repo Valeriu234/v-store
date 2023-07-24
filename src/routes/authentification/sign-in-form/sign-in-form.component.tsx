@@ -54,7 +54,7 @@ const SignInFormComponent = () => {
 
 	useEffect(() => {
 		if (currentUser !== null) {
-			navigate("/shop");
+			navigate("/");
 		}
 	}, [currentUser, navigate]);
 

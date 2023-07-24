@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 interface NavigationItemComponentProps {
 	children: React.ReactNode;
 	route: string;
-	allowSwitchRoute?: (e: React.MouseEvent<HTMLElement>) => void;
+	additionalAction?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 const NavigationItemComponent = ({
 	children,
 	route,
-	allowSwitchRoute,
+	additionalAction,
 }: NavigationItemComponentProps) => {
 	return (
-		<Link className="nav-link" to={route} onClick={allowSwitchRoute}>
+		<Link className="nav-link" to={route} onClick={additionalAction}>
 			{children}
 		</Link>
 	);

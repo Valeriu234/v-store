@@ -1,4 +1,4 @@
-import { Category } from "../../routes/home/category-item/category-item.component.tsx";
+import { Category } from "../../routes/shop/category-item/category-item.component.tsx";
 
 import "./category-item.styles.scss";
 

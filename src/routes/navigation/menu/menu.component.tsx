@@ -55,7 +55,9 @@ const MenuComponent = ({
 		if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
 	};
 	const allowSwitchCartRoute = (e: React.MouseEvent<HTMLElement>) => {
-		if (currentUser) {
+		if (setIsMobileMenuOpen) {
+			setIsMobileMenuOpen(false);
+		} else {
 			e.preventDefault();
 			setIsCartOpen(!isCartOpen);
 		}
@@ -67,34 +69,40 @@ const MenuComponent = ({
 		}
 	};
 
+	const closeMobileMenuOnClick = () => {
+		if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
+	};
+
 	const navLinks = [
 		{
 			route: ROUTES.SHOP,
 			content: <span>SHOP</span>,
+			additionalAction: closeMobileMenuOnClick,
 		},
 		{
 			route: ROUTES.CONTACTS,
 			content: <span>CONTACTS</span>,
+			additionalAction: closeMobileMenuOnClick,
 		},
 		{
 			route: ROUTES.SIGN_IN,
 			content: showSignInOrSignOut,
-			allowSwitchRoute: allowSwitchSignUpRoute,
+			additionalAction: allowSwitchSignUpRoute,
 		},
 		{
 			route: ROUTES.SHOPPING_CART,
 			content: showCart,
-			allowSwitchRoute: allowSwitchCartRoute,
+			additionalAction: allowSwitchCartRoute,
 		},
 	];
 	return (
 		<>
 			<div className={isMobileMenu}>
-				{navLinks.map(({ route, content, allowSwitchRoute }, index) => (
+				{navLinks.map(({ route, content, additionalAction }, index) => (
 					<NavigationItemComponent
 						key={index}
 						route={route}
-						allowSwitchRoute={allowSwitchRoute}
+						additionalAction={additionalAction}
 					>
 						{content}
 					</NavigationItemComponent>

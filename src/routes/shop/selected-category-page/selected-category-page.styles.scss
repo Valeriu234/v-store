@@ -1,0 +1,26 @@
+.shop {
+  display: grid;
+  width: 95%;
+  grid-template-columns: repeat(4,1fr);
+  column-gap: 10px;
+  row-gap: 50px;
+
+  @media only screen and ($large-tablet) {
+    grid-template-columns: repeat(3,1fr);
+
+  }
+
+  @media only screen and ($medium-tablet) {
+    grid-template-columns: repeat(2,1fr);
+  }
+  @media only screen and ($phone) {
+    grid-template-columns: repeat(1,1fr);
+
+  }
+}
+
+.category-title{
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
