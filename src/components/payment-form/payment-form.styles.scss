@@ -1,0 +1,11 @@
+.payment-form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .payment-form__button {
+    display: flex;
+    justify-content: center;
+  }
+}
