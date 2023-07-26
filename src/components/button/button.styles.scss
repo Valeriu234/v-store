@@ -1,5 +1,5 @@
 .button-container {
-  width: 30%;
+  width: 100%;
   letter-spacing: 0.5px;
   padding: var(--small-padding);
   font-size: 18px;
@@ -13,6 +13,8 @@
   align-items: center;
   border: 1px solid black;
   transition: .3s ease-in;
+
+
 
   @media only screen and ($phone) {
     width: 100%;
