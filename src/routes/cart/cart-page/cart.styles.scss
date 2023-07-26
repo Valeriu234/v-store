@@ -62,6 +62,13 @@
   }
   .cart__total-sum {
     text-align: right;
+    font-size: var(--font-size-big);
+  }
+
+  .cart__bottom-items {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--medium-margin);
   }
 }
 

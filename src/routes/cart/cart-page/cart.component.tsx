@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { CartContext } from "../../../contexts/cart.context.tsx";
 import CartItemComponent from "../cart-item/cart-item.component.tsx";
+import PaymentFormComponent from "../../../components/payment-form/payment-form.component.tsx";
 
 import "./cart.styles.scss";
 
@@ -32,7 +33,10 @@ const CartComponent = () => {
 					/>
 				))}
 			</div>
-			<h1 className="cart__total-sum">Total : {productsSum} $</h1>
+			<div className="cart__bottom-items">
+				<h1 className="cart__total-sum">Total : {productsSum} $</h1>
+				<PaymentFormComponent />
+			</div>
 		</div>
 	);
 };
