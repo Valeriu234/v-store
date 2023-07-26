@@ -88,7 +88,7 @@ const MenuComponent = ({
 			additionalAction: closeMobileMenuOnClick,
 		},
 		{
-			route: ROUTES.SIGN_IN,
+			route: ROUTES.AUTHENTICATION,
 			content: showSignInOrSignOut,
 			additionalAction: allowSwitchSignUpRoute,
 		},
