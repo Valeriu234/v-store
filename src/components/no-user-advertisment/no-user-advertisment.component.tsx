@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 import ButtonComponent from "../button/button.component.tsx";
+import { ROUTES } from "../../routes/routes.constants.ts";
 
 import "./no-user-advertisment.styles.scss";
-import { useNavigate } from "react-router-dom";
 
 const NoUserAdvertismentComponent = () => {
 	const navigate = useNavigate();
 	const yesClickHandler = () => {
-		navigate("/sign-in");
+		navigate(ROUTES.AUTHENTICATION);
 	};
 	return (
 		<>
