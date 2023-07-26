@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import CategoriesPageComponent from "./routes/shop/categories-page/categories-page.component.tsx";
@@ -7,24 +6,23 @@ import LoginPageComponent from "./routes/authentification/login-page/login-page.
 import ContactsComponent from "./routes/contacts/contacts-page/contacts.component.tsx";
 import SelectedCategoryPageComponent from "./routes/shop/selected-category-page/selected-category-page.component.tsx";
 import CartComponent from "./routes/cart/cart-page/cart.component.tsx";
-
-import { CategoriesContext } from "./contexts/products.context.tsx";
 import HomePageComponent from "./routes/home/home-page/home-page.component.tsx";
 
+import { ROUTES } from "./routes/routes.constants.ts";
+
 function App() {
-	const { selectedCategory } = useContext(CategoriesContext);
 	return (
 		<Routes>
-			<Route path="/" element={<NavigationComponent />}>
-				<Route path="/" element={<HomePageComponent />} />
-				<Route path="/contacts" element={<ContactsComponent />} />
-				<Route path="/shop" element={<CategoriesPageComponent />} />
+			<Route path={ROUTES.HOME} element={<NavigationComponent />}>
+				<Route path={ROUTES.HOME} element={<HomePageComponent />} />
+				<Route path={ROUTES.CONTACTS} element={<ContactsComponent />} />
+				<Route path={ROUTES.SHOP} element={<CategoriesPageComponent />} />
 				<Route
-					path={`/shop/:${selectedCategory}`}
+					path={ROUTES.SHOP_CATEGORY}
 					element={<SelectedCategoryPageComponent />}
 				/>
-				<Route path="/sign-in" element={<LoginPageComponent />} />
-				<Route path="/shopping-cart" element={<CartComponent />} />
+				<Route path={ROUTES.AUTHENTICATION} element={<LoginPageComponent />} />
+				<Route path={ROUTES.SHOPPING_CART} element={<CartComponent />} />
 			</Route>
 		</Routes>
 	);
