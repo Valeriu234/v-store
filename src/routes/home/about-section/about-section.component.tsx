@@ -11,16 +11,19 @@ const AboutSectionComponent = () => {
 			text: "This is the best fashion magazine you can find, we are on the market since 2007 and our clients are the most thankful in the world",
 			img: girlImage1,
 			altImage: "fashionGirl1",
+			id: 1,
 		},
 		{
 			text: "Our prices are well determined and based on the quality of the products",
 			img: girlImage2,
 			altImage: "fashionGirl2",
+			id: 2,
 		},
 		{
 			text: "The quality of our products is recognised as the top quality in entire world by the clothes quality analysers",
 			img: manImage,
 			altImage: "fashionMan",
+			id: 3,
 		},
 	];
 	return (
@@ -28,12 +31,13 @@ const AboutSectionComponent = () => {
 			<h2 className="section-title">About us</h2>
 			<div className="about">
 				{aboutItems.map((aboutItem) => {
-					const { img, text, altImage } = aboutItem;
+					const { img, text, altImage, id } = aboutItem;
 					return (
 						<AboutSectionItemComponent
 							img={img}
 							text={text}
 							altImage={altImage}
+							key={id}
 						/>
 					);
 				})}

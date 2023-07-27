@@ -19,8 +19,10 @@ const CartComponent = () => {
 	return (
 		<div className="cart">
 			<div className="cart__headers">
-				{cartHeaders.map((title) => (
-					<span className="headers__item">{title}</span>
+				{cartHeaders.map((title, index) => (
+					<span key={index} className="headers__item">
+						{title}
+					</span>
 				))}
 			</div>
 			<div className="cart__products">
@@ -30,6 +32,7 @@ const CartComponent = () => {
 						decrementProductByOne={decrementProductByOne}
 						deleteProductFromCart={deleteProductFromCart}
 						incrementProductByOne={incrementProductByOne}
+						key={cartProduct.id}
 					/>
 				))}
 			</div>
